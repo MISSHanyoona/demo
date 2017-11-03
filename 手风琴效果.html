@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        ul {
+            list-style: none;
+        }
+        .box {
+            width: 1125px;
+            margin: 100px auto;
+        }
+        li {
+            width: 200px;
+            height: 300px;
+            float: left;
+            overflow: hidden;
+        }
+
+    </style>
+</head>
+<body>
+<div class="box">
+    <ul>
+    </ul>
+</div>
+
+</body>
+<script src="../../jquery/jquery-1.11.1.js"></script>
+<script>
+    $(function(){
+        var data=[
+            'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3857801650,1857190540&fm=26&gp=0.jpg',
+            'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3839337865,1135534690&fm=26&gp=0.jpg',
+            'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1600506397,107500863&fm=26&gp=0.jpg',
+            'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=935401756,403051509&fm=26&gp=0.jpg',
+            'https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3891229345,1907050273&fm=26&gp=0.jpg'
+        ];
+        var str='';
+        for(var i=0;i<data.length;i++){
+            str+='<li><img src="'+data[i]+'" alt=""/></li>';
+        }
+        $('ul').html(str);
+        $('li').hover(function(){
+            $(this).stop().animate({width:500},300).siblings().stop().animate({width:125},300);
+        },function(){
+            $('li').stop().animate({width:200},300);
+        });
+        
+        
+    })
+</script>
+</html>
