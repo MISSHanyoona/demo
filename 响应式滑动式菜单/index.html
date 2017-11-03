@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
+    <title></title>
+    <link rel="stylesheet" href="style/css.css"/>
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1>css3响应式滑动菜单</h1>
+    </header>
+    <div class="content">
+        <ul>
+            <li>
+                <span>home</span>
+                Home
+            </li>
+            <li>
+                <span>phone</span>
+                Phone
+            </li>
+            <li>
+                <span>wifi</span>
+                Wifi
+            </li>
+            <li>
+                <span>setting</span>
+                Setting
+            </li>
+            <li>
+                <span>twitter</span>
+                Twitter
+            </li>
+            <li>
+                <span>facebook</span>
+                Facebook
+            </li>
+        </ul>
+
+        <div class="nav">目录</div>
+    </div>
+</div>
+
+</body>
+<script src="../../jquery/jquery-1.11.1.min.js"></script>
+<script>
+    $('.nav').on('click',function(){
+        $('ul').show();
+    });
+</script>
+</html>
