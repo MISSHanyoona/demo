@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body {
+            background-color: #000;
+        }
+        div {
+            border-radius: 50%;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+
+</body>
+<script>
+
+    function createCircle(parent){
+        var div = document.createElement('div');
+        var wh = randomInt(10,150);
+        div.style.width = wh + 'px';
+        div.style.height = wh + 'px';
+        div.style.left = randomInt(0,1200) + 'px';
+        div.style.top = randomInt(0,500) + 'px';
+        //Math.random()*0.6+0.4 产生0-1
+       div.style.backgroundColor = `rgba(${randomInt(0,255)},${randomInt(0,255)},${randomInt(0,255)},${Math.random()*0.6+0.4})`;
+        parent.appendChild(div);
+    }
+    for(var i = 0;i < 30;i ++){
+        createCircle(document.body);
+    }
+
+    //返回随机的[from , to]之间的整数 （包括from 包括to）
+    function randomInt(from,to){
+        return parseInt(Math.random() * (to - from + 1) + from);
+    }
+//    function getRandomColor(){
+//        var rgb='rgb('+Math.floor(Math.random()*255)+','
+//                +Math.floor(Math.random()*255)+','
+//                +Math.floor(Math.random()*255)+')';
+//        console.log(rgb);
+//        return rgb;
+//    }
+//    (`hello world!`)
+
+</script>
+</html>
