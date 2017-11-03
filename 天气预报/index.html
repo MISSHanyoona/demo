@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        ul {
+            list-style: none;
+        }
+        .box {
+            width: 800px;
+            height: 400px;
+            background-color: #6c7cff;
+            margin: 100px auto;
+            padding-left: 5px;
+            position: relative;
+        }
+        .top {
+            position: absolute;
+            top: 80px;
+        }
+        .top>li {
+            width: 800px;
+            height: 30px;
+            color: #ffffff;
+            line-height: 30px;
+        }
+        h3 {
+            width: 300px;
+            height: 30px;
+            padding-top: 10px;
+            /*font-weight: 500;*/
+            color: #404040;
+            font-family: '宋体';
+        }
+        input {
+            width: 200px;
+            height: 25px;
+            margin-top: 7px;
+        }
+        button {
+            width: 50px;
+            height: 30px;
+        }
+
+        .outside {
+            margin-top: 15px;
+            color: #ffffff;
+            position: absolute;
+            top: 120px;
+        }
+        .outside>li {
+            float: left;
+            width: 109px;
+            height: 250px;
+            margin-top: 10px;
+            margin-right: 5px;
+            text-align: center;
+            line-height: 50px ;
+            background-color: rgba(22, 62, 116, 0.3);
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <ul class="top">
+
+    </ul>
+    <h3>天气查询：</h3>
+    <input type="text"/>
+    <button>查询</button>
+    <ul class="outside">
+
+    </ul>
+</div>
+</body>
+<script src="js/jquery-1.11.1.min.js"></script>
+<script>
+    $(document).keypress(function(e){
+        if(e.keyCode == 13){
+            var text=$('input').val();
+            $.ajax({
+                url:' http://jisutianqi.market.alicloudapi.com/weather/query?city='+text,
+                headers:{
+                    Authorization:"APPCODE df954a826b484d5db71069da9e6d2896 "
+                },
+                type:'get',
+                success:function(data){
+                    var str1='';
+                    var str='';
+                    str1 += '<li>城市:'+data.result.city+'</li>';
+                    str1 += '<li>更新时间:'+data.result.updatetime+'</li>';
+
+                    for(var i=0;i<data.result.daily.length;i++){
+                        if(data.result.daily[i].night.weather!=data.result.daily[i].day.weather){
+                            str+='<li>'+data.result.daily[i].date+'<br><span>'+data.result.daily[i].week+'</span><br><span>'+data.result.daily[i].night.weather+'/'+data.result.daily[i].day.weather+'</span><br><span>'+data.result.daily[i].night.templow+'/'+data.result.daily[i].day.temphigh+'</span><br><span>'+data.result.daily[i].day.windpower+'</span></li>';
+                        }else {
+                            str+='<li>'+data.result.daily[i].date+'<br><span>'+data.result.daily[i].week+'</span><br><span>'+data.result.daily[i].night.weather+'</span><br><span>'+data.result.daily[i].night.templow+'/'+data.result.daily[i].day.temphigh+'</span><br><span>'+data.result.daily[i].day.windpower+'</span></li>';
+                        }
+                    }
+                    console.log(str1);
+                    $('.top').html(str1);
+                    $('.outside').html(str);
+                },
+                error:function(){
+                    alert('请求失败');
+                }
+            })
+        }
+    })
+</script>
+
+
+'<li>'+1+'<br><span>'+2+'</span><br><span>'+3+'/'+4+'</span><br><span>'+5+'/'+6+'</span><br><span>'+7+'</span></li>';
+
+</html>
