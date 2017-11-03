@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .box {
+            margin: 100px auto;
+            position: relative;
+            transform-style: preserve-3d;
+            transform: rotateX(20deg) rotateY(20deg);
+            transition: all 5s;
+        }
+        .box:hover {
+            transform: rotateX(300deg) rotateY(300deg);
+        }
+        div {
+            width: 200px;
+            height: 200px;
+            color: white;
+            text-align: center;
+            line-height: 200px;
+            font-size: 20px;
+            border: 1px solid yellow;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        .front {
+            background: url('https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2826990037,915948398&fm=26&gp=0.jpg') rgba(0, 0, 0, .5);
+            transform: translateZ(100px);
+
+        }
+        .top {
+            background:url("https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1272750430,4036309780&fm=26&gp=0.jpg") rgba(0, 0, 0, 0.5);
+            transform: rotateX(90deg) translateZ(100px);
+        }
+        .bottom {
+            background:url("https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=372960645,3297487016&fm=26&gp=0.jpg") rgba(0, 0, 0, .5);
+            transform: rotateX(-90deg) translateZ(100px);
+        }
+        .left {
+            background:url("https://ss0.bdstatic.com/70cFvHSh_Q1YnxGkpoWK1HF6hhy/it/u=1640983314,2465246958&fm=26&gp=0.jpg") rgba(0, 0, 0, .5);
+            transform: rotateY(-90deg) translateZ(100px);
+        }
+        .right {
+            background:url("https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=2528888775,1597311928&fm=26&gp=0.jpg") rgba(0, 0, 0, .5);
+            transform: rotateY(90deg) translateZ(100px);
+        }
+        .behind {
+            background:url("https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=4108836108,2735770129&fm=26&gp=0.jpg") rgba(0, 0, 0,.5);
+            transform: rotateY(180deg) translateZ(100px);
+        }
+
+    </style>
+</head>
+<body>
+<div class="box">
+    <div class="front"></div>
+    <div class="top"></div>
+    <div class="bottom"></div>
+    <div class="left"></div>
+    <div class="right"></div>
+    <div class="behind"></div>
+</div>
+</body>
+</html>
