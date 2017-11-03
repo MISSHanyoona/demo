@@ -1,0 +1,259 @@
+body {
+    background-color: #d8d8d8;
+}
+
+.container {
+    width: 1100px;
+}
+header {
+    width: 100%;
+    height: 435px;
+    background: url("../img/简木2_01.png");
+    -webkit-background-size: contain;
+    background-size: contain;
+}
+.row {
+    margin: 10px 0;
+}
+a {
+    color: white;
+}
+
+.top ul>li {
+    margin-left: 20px;
+}
+.top ul li>a {
+    font-size: 16px;
+}
+.top ul li>a>span {
+    border-bottom: 0px solid white;
+    padding-bottom: 5px;
+}
+header .top {
+    background-color: rgba(11, 11, 11, 0.7);
+}
+.top ul li>a:hover {
+    color: white;
+    background-color: #000;
+}
+.top ul li>a:hover span {
+    border-bottom: 1px solid white;
+}
+.left-menu {
+    width: 300px;
+    position: absolute;
+    top: -20px;
+}
+
+.left-menu>ul>li{
+    background-color: #2f2f2f;
+    border: 1px solid black;
+    color: white;
+    cursor: pointer;
+    padding: 11px 20px;
+    transition: all 0.3s;
+}
+
+.left-menu>ul>h2 {
+    font-size: 20px;
+    background-color: #2f2f2f;
+    border: 1px solid black;
+    color: white;
+    padding: 14px 20px;
+}
+.left-menu>ul>li>span {
+    width: 25px;
+    height: 25px;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 10px;
+}
+.left-menu>ul>li:first-of-type>span {
+    background: url("../img/menu_04.png");
+}
+.left-menu>ul>li:nth-of-type(2)>span {
+    background: url("../img/menu_11.png");
+}
+.left-menu>ul>li:nth-of-type(3)>span {
+    background: url("../img/menu_07.png");
+}
+.left-menu>ul>li:nth-of-type(4)>span {
+    background: url("../img/menu_05.png");
+}
+.left-menu>ul>li:nth-of-type(5)>span {
+    background: url("../img/menu_03.png");
+}
+.left-menu>ul>li:nth-of-type(6)>span {
+    background: url("../img/menu_12.png");
+}
+.left-menu>ul>li:nth-of-type(7)>span {
+    background: url("../img/menu_13.png");
+}
+.left-menu>ul>li:last-of-type>span {
+    background: url("../img/menu_06.png");
+}
+.left-menu>ul>li>i {
+    position: absolute;
+    right: 10%;
+    content: "\f105";
+}
+.left-menu>ul>li:hover {
+    color: #edab00;
+    padding-left: 23px;
+}
+.sel1 {
+    width: 100%;
+    height: 270px;
+    padding: 50px 0;
+    box-sizing: border-box;
+    margin-bottom: 50px;
+    margin-top: 50px;
+}
+.sel1 .word {
+    display: inline-block;
+}
+.sel1 .pic {
+    display: flex;
+    justify-content: space-between;
+    padding-left: 70px;
+}
+.sel2 {
+    width: 100%;
+    position: relative;
+}
+.sel2>img {
+    width: 100%;
+}
+.sel2 .col-md-1 {
+    color: white;
+    position: absolute;
+    top: 6%;
+}
+.sel2 a {
+    color: #bfbfbf;
+}
+.sel2 a>span {
+    width: 0;
+    height: 0;
+    font-size: 0;
+    display: inline-block;
+    border-width: 6px;
+    border-color:  transparent transparent  transparent#FFF;
+    border-style: dashed dashed dashed solid;
+    margin-left: 5px;
+}
+.sel2 a:hover {
+    color: white;
+}
+.sel3 {
+    position: relative;
+}
+.sel3 .box {
+    width: 100%;
+
+    overflow: hidden;
+}
+.sel3 .box img {
+    margin-left: -12%;
+}
+.sel3 .box .word {
+    width: 300px;
+    text-align: center;
+    z-index: 99;
+    position: absolute;
+    top: 10%;
+    right: 15%;
+}
+.sel3 .box .word>div {
+    background:linear-gradient(to left, #cccccc,#000,#cccccc);
+    height:1px;
+    width: 100%;
+    margin-top: 10%;
+}
+.sel4 {
+    border-bottom: 3px solid white;
+    position: relative;
+}
+.sel4>.word {
+    width: 100%;
+    color: white;
+    position: absolute;
+    top: 10%;
+    font-size: 20px;
+}
+.sel5 {
+    border-bottom: 3px solid white;
+    position: relative;
+}
+.sel5 .word {
+    position: absolute;
+    top: 15%;
+    left: 10%;
+    font-size: 30px;
+}
+.sel6 {
+    overflow: hidden;
+    display: flex;
+    justify-content: space-between;
+}
+.sel6>.word {
+    width: 100%;
+    height: 20%;
+    position: absolute;
+    left: 0;
+    top: 45%;
+}
+.sel6>.word>ul {
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+}
+.sel6>.word>ul>li {
+    width: 30%;
+    height: 20%;
+    line-height: 200%;
+    font-size: 30px;
+    font-weight: 600;
+    text-align: center;
+
+}
+
+.sel7, .sel8,.sel6 {
+    position: relative;
+}
+
+.sel8>.mask,
+.sel7>.mask {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.sel7>.mask{
+    text-align: center;
+    line-height: 50%;
+    background-color: rgba(147, 147, 147, 0.3);
+}
+.sel7>.mask>h3 {
+    color: black;
+    margin-top: 10%;
+    font-size: 35px;
+}
+.sel8>.mask {
+    display: flex;
+    justify-content: space-between;
+}
+.sel8>.mask>div{
+    width: 25%;
+    height: 100%;
+    font-size: 30px;
+    text-align: center;
+    color: white;
+}
+.sel8>.mask>div>span {
+    display: inline-block;
+    width: 5px;
+    margin-top: 200px;
+}
+
