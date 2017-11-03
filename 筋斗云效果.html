@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .box {
+            width: 1200px;
+            height: 40px;
+            position: relative;
+            margin: 20px auto;
+            text-align: center;
+            line-height: 40px;
+        }
+        ul {
+            list-style: none;
+            background-color: #1a21ae;
+            width: 1200px;
+            height: 40px;
+        }
+        li {
+            width: 80px;
+            height: 40px;
+            float: left;
+            color: #ffffff;
+            cursor: pointer;
+            position: relative;
+            z-index: 99;
+        }
+        .move {
+            width: 80px;
+            height: 40px;
+            background-color: red;
+            position: absolute;
+            top: 0px;
+            left:0px;
+        }
+    </style>
+</head>
+<body>
+<div class="box">
+    <ul>
+        <li>首页</li>
+        <li>百家号</li>
+        <li>国际</li>
+        <li>国内</li>
+        <li>军事</li>
+        <li>体育</li>
+        <li>娱乐</li>
+        <li>社会</li>
+        <li>财经</li>
+        <li>互联网</li>
+        <li>科技</li>
+        <li>游戏</li>
+        <li>时尚</li>
+        <li>汽车</li>
+        <li>个性推荐</li>
+    </ul>
+    <div class="move"></div>
+</div>
+
+
+</body>
+<script src="../../jquery/jquery-1.11.1.js"></script>
+<script>
+    $(function(){
+        $('li').hover(function(){
+            var num=$(this).index()*$('li').width();
+            $('.move').stop().animate({left:num},300);
+        },function(){
+            $('.move').stop().animate({left:0},300);
+
+        });
+    })
+</script>
+</html>
