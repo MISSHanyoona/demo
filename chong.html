@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>Worm</title>
+    <style>
+        html,body,canvas {
+            width: 100vw;
+            height: 100vh;
+            background: rgb(180,220,30);
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+<canvas></canvas>
+<script>
+
+    window.onload = function() {
+
+        var worms = new Set();
+        var id = 0;
+
+        var width = window.innerWidth;
+        var height = window.innerHeight;
+
+        var canvas = document.querySelector("canvas");
+        var ctx = canvas.getContext("2d");
+
+        canvas.width = width;
+        canvas.height = height;
+
+        function randomNUM(min, max) {
+
+            return Math.ceil(Math.random() * (max - min) + min);
+        }
+
+        function Body(x, y, vx, vy, va, count, radius) {
+
+            this.x = x;
+            this.y = y;
+            this.vx = vx;
+            this.vy = vy;
+            this.count = count;
+            this.radius = radius;
+            this.angle = Math.PI / 180 * this.count * 30;
+            this.va = va;
+        }
+
+        Body.prototype.move = function() {
+
+            this.y += this.vy * Math.cos(this.angle);
+            this.x += this.vx;
+            this.angle += Math.PI / 180 * this.va;
+
+            if (this.angle === Math.PI * 2) {
+
+                this.angle = Math.PI / 180;
+            }
+
+            if (this.x >= width - this.radius + 140) {
+
+                this.x = -this.radius;
+            }
+        };
+
+        Body.prototype.draw = function() {
+
+            var radgrad = ctx.createRadialGradient(this.x - this.radius / 2, this.y - this.radius / 3, this.radius / 5, this.x, this.y, this.radius * 2);
+            radgrad.addColorStop(0, "rgb(178, 174, 12)");
+            radgrad.addColorStop(0.5, "rgb(0, 90, 0)");
+            radgrad.addColorStop(1, "rgb(0, 0, 0)");
+
+            ctx.fillStyle = radgrad;
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
+            ctx.shadowOffsetX = 5;
+            ctx.shadowOffsetY = 8;
+            ctx.shadowBlur = 20;
+            ctx.shadowColor = "rgba(0, 0, 0, 0.5)";
+            ctx.fill();
+            ctx.closePath();
+        };
+
+        function Worm(x, y) {
+
+            this.x = x;
+            this.y = y;
+            this.vx = Math.random() * 3 + 2;
+            this.vy = Math.random() * 2 + 1;
+            this.va = randomNUM(8, 10);
+            this.bodys = new Set();
+        }
+
+        Worm.prototype.assemble = function() {
+
+            var body1 = new Body(this.x + 8, this.y, this.vx, this.vy, this.va, 0, 40);
+            var body2 = new Body(this.x + 48, this.y, this.vx, this.vy, this.va, 1, 50);
+            var body3 = new Body(this.x + 90, this.y, this.vx, this.vy, this.va, 2, 60);
+            var body4 = new Body(this.x + 134, this.y, this.vx, this.vy, this.va, 3, 66);
+
+            this.bodys.add(body1).add(body2).add(body3).add(body4);
+
+            for (var count = 4; count < 8; count++) {
+
+                this.bodys.add(new Body(this.x + 20 + count * 40, this.y, this.vx, this.vy, this.va, count, 70));
+            }
+
+            var body5 = new Body(this.x + 346, this.y, this.vx, this.vy, this.va, 8, 66);
+            var body6 = new Body(this.x + 390, this.y, this.vx, this.vy, this.va, 9, 60);
+            var body7 = new Body(this.x + 432, this.y, this.vx, this.vy, this.va, 10, 50);
+            var body8 = new Body(this.x + 472, this.y, this.vx, this.vy, this.va, 11, 40);
+
+            this.bodys.add(body5).add(body6).add(body7).add(body8);
+        };
+
+        function animate() {
+
+            ctx.clearRect(0, 0, width, height);
+
+            if (id < 2) {
+
+                var worm = new Worm(0, height / 3 * (id + 1));
+                worm.assemble();
+
+                worms.add(worm);
+                id += 1;
+            }
+
+            worms.forEach(function(worm) {
+
+                worm.bodys.forEach(function(body) {
+
+                    body.draw();
+                    body.move();
+                });
+            });
+
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+    };
+</script>
+</body>
+</html>
