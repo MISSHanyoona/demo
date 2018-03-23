@@ -1,0 +1,316 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>画板</title>
+    <style>
+        body,html{
+            margin: 0; padding: 0; overflow: hidden; background:#cccccc;
+        }
+        .wrap{ text-align:center ;}
+        .p1{ color:#bd397c;
+            font-size:32px;
+            font-family:YouYuan;
+            font-weight: bold;
+            line-height:80px;
+
+        }
+
+        .cnt{
+            display:block;
+
+            width:800px;
+            height:400px;
+            background:#FFF;
+            box-shadow:5px 5px 5px #888888;
+            position: absolute;left:50%;margin-left: -400px;
+            top:80px;
+            border-radius:10px;
+        }
+
+        .delete{
+            width:60px;
+            height:60px;
+            background:url(http://img1.ph.126.net/OzpZDVCfJRWjeRh65ptkhQ==/6597369933333352000.jpg) no-repeat;
+            position: absolute; top:20px; right:20px;
+            background-size:cover;/*图片覆盖在背景框架上*/
+            border-radius:50%;
+            box-shadow:0 0 15px #CCC inset;
+            box-sizing:border-box;/*通过已设定框架减去边框得到*/
+        }
+        .delete:active{
+
+            border:2px solid #ccc;
+
+        }
+
+        .menu{
+            left:70px;
+            bottom:50px;
+            position:absolute;}
+        .item{
+            width:20px;
+            height:20px;
+            border-radius:50%;
+            position:absolute;top:0px;
+            left:0px;
+            margin-top:-10px;
+            margin-left:-10px;
+            transition:all .5s;
+            opacity:0;
+
+        }
+        .item:active{
+            border:1px solid #f00;
+
+        }
+        .it-1{
+            transition-delay:0.1s;
+            background:#e6233e;
+
+        }
+
+        .it-2{
+            transition-delay:0.2s;
+            background: #378ac5;
+
+        }
+
+        .it-3{
+            transition-delay:0.3s;
+            background:#13b965;
+
+        }
+
+        .it-4{
+            transition-delay:0.4s;
+            background: #FF0;
+
+        }
+
+        .it-5{
+            transition-delay:0.5s;
+            background: #3F0;
+
+        }
+
+        .it-6{
+            transition-delay:0.6s;
+            background:#b53d10;
+
+        }
+
+        .it-7{
+            transition-delay:0.7s;
+            background:#000;
+
+        }
+        .menu:hover .item{
+            opacity:1;}
+
+        .menu:hover .it-1{
+            top:0px;
+            left:-50px;}
+
+        .menu:hover .it-2{
+            top:-25px;
+            left:-43px;}
+
+        .menu:hover .it-3{
+            top:-43px;
+            left:-25px;}
+
+        .menu:hover .it-4{
+            top:-50px;
+            left:0px;}
+
+        .menu:hover .it-5{
+            top:-43px;
+            left:25px;}
+
+        .menu:hover .it-6{
+            top:-25px;
+            left:43px;}
+
+        .menu:hover .it-7{
+            top:0px;
+            left:50px;}
+
+        .menu .bg{
+            with:30px;
+            height:30px;
+            position:absolute;
+            margin-left:-15px;
+            margin-top:-15px;
+            top:0; left:0; border-radius:50%;
+        }
+        .menu:hover .bg{
+            width:100px; height:100px;
+            margin-left:-50px;
+            margin-top:-50px;
+        }
+
+        .color{
+            width:60px;
+            height:60px;
+            display:block;
+            background:#e6233e;
+            margin-left:-30px;
+            margin-top:-30px;
+            background: url(http://img1.ph.126.net/WMDq3upNjf-APgkO59MgeQ==/6599297377216122172.jpg) no-repeat top right;
+            position: absolute; bottom:-30px; left:0px;
+            background-size:60px 60px;/*图片覆盖在背景框架上*/
+            border-radius:50%;
+
+            box-sizing: border-box;
+            border:1px solid #ccc;
+
+        }
+        .clean{
+            width:60px;
+            height:60px;
+            background: url(http://img2.ph.126.net/C_CBraG5KfJc4SFDtcejxA==/6608195724819660074.png) no-repeat;
+            position: absolute; bottom:20px; right:100px;
+            background-size:cover;/*图片覆盖在背景框架上*/
+            border-radius:50%;
+            box-shadow:0 0 15px #CCC inset;
+            box-sizing:border-box;
+        }
+        .clean:active{
+            border:2px solid #ccc;
+        }
+        .pen{
+            width:60px;
+            height:60px;
+            background: url(http://img1.ph.126.net/iEX7eFV2b0Bq6P5g2D4rfQ==/6632744520933009952.png) no-repeat;
+            position: absolute; bottom:20px; right:20px;
+            background-size:cover;/*图片覆盖在背景框架上*/
+            border-radius:50%;
+            box-shadow:0 0 15px #CCC inset;
+            box-sizing:border-box;
+        }
+        .pen:active{
+            border:2px solid #ccc;
+        }
+        .brush{ position:absolute;
+            width:200px;
+            margin-left:-100px;
+            bottom:20px; left:50%;
+            line-height:60px;
+            text-align:center
+        }
+        .brush .b{
+            background:#000;
+            display: inline-block;
+            vertical-align:middle;
+            border-radius:100%;
+            box-sizing:border-box;
+        }
+        .brush .b.active{
+            border:1px solid #000;
+        }
+        .brush .b:nth-child(1){
+            width:10px; height:10px;
+        }
+        .brush .b:nth-child(2){
+            width:20px; height:20px;
+        }
+        .brush .b:nth-child(3){
+            width:25px; height:25px;
+        }
+        .brush .b:nth-child(4){
+            width:30px; height:30px;
+        }
+        .brush .b:nth-child(5){
+            width:40px; height:40px;
+        }
+    </style>
+</head>
+
+<body>
+<div class="wrap">
+    <span class="p1">画板</span>
+    <div class="cnt">
+        <canvas id="paint" class="canvas" width="800"  height="400"> </canvas>
+        <div class="menu">
+            <div class="bg"></div>
+            <div class="color"></div>
+            <div class="item it-1"></div>
+            <div class="item it-2"></div>
+            <div class="item it-3"></div>
+            <div class="item it-4"></div>
+            <div class="item it-5"></div>
+            <div class="item it-6"></div>
+            <div class="item it-7"></div>
+
+        </div>
+        <a href="javascript:;" class="delete"></a>
+
+        <a href="javascript:;" class="clean" data-type="1"></a>
+        <a href="javascript:;" class="pen active" data-type="0"></a>
+        <div class="brush">
+            <a href="javascript:;" class="b active" data-width="1"></a>
+            <a href="javascript:;" class="b" data-width="20"></a>
+            <a href="javascript:;" class="b" data-width="25"></a>
+            <a href="javascript:;" class="b" data-width="30"></a>
+            <a href="javascript:;" class="b" data-width="35"></a>
+        </div>
+    </div>
+
+</div>
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+    var canvas=document.getElementById("paint");
+    var ctx=canvas.getContext("2d");
+    var drawWidth=1;
+    var mouseDrag=false;
+    var drawType=0;
+    $(".pen,.clean").click(function(){
+        $(".pen,.clean").removeClass("active");
+        $(this).addClass("active");
+        drawType=$(this).data("type");
+    })
+    $(".item").click(function(){
+        var color=$(this).css("background-color");
+        $(".brush .b").css({"background":color});
+        ctx.strokeStyle=color;
+        ctx.fillStyle=color;
+    })
+    $(".brush .b").click(function(){
+        $(".brush .b").removeClass("active");
+        $(this).addClass("active");
+        drawWidth=$(this).data("width");
+    })
+    $(".delete").click(function(){
+        ctx.clearRect(0,0,canvas.width,canvas.height);
+    })
+
+    canvas.addEventListener("mousedown",function(e){
+        mouseDrag=true;
+        ctx.moveTo(e.offsetX,e.offsetY);
+    })
+
+    canvas.addEventListener("mousemove",function(e){
+        if(mouseDrag){
+            if(drawType==1){
+                ctx.globalCompositeOperation="destination-out";
+            }else{
+                ctx.globalCompositeOperation="source-over";
+            }
+            ctx.lineWidth=drawWidth;
+            ctx.lineTo(e.offsetX,e.offsetY);
+            ctx.stroke();
+            ctx.beginPath();
+            ctx.arc(e.offsetX,e.offsetY,drawWidth/2,0,Math.PI*2);
+            ctx.fill();
+            ctx.beginPath();
+            ctx.moveTo(e.offsetX,e.offsetY);
+        }
+    })
+    canvas.addEventListener("mouseup",function(e){
+        mouseDrag=false;
+    })
+
+</script>
+</body>
+</html>
