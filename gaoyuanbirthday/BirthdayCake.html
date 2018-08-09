@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <title>Happy Birthday</title>
+  <link rel="stylesheet" href="css/styless.css" media="screen" type="text/css" />
+  <link href="https://cdn.bootcss.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<!-- <audio src="music/2.mp3" autoplay loop></audio> -->
+<div class="bg">
+      <div class="velas">
+        <div class="fuego"></div>
+        <div class="fuego"></div>
+        <div class="fuego"></div>
+        <div class="fuego"></div>
+        <div class="fuego"></div>
+    </div>
+	<div class="cake" style="width: 195px;margin: 0 auto;"><img src='./img/srkl.gif'>  </div>
+	  
+</div>
+<div class="happy">
+	<img src="img/HappyBirthday.png">
+</div>
+<ul class="bg-bubbles">
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+    <li></li>
+</ul>
+<div class="choose">
+  <p>生日快乐哈^_^!<br>我们已经认识这么多年了,这是第一次送你生日礼物对吧,<br>sorry啦o(╥﹏╥)o.<br>
+    本来有很多话要说的,但是现在也不知道要说什么了,就是希望你开心啦,然后爱你呦,比心^_^
+
+  </p>
+
+</div>
+
+
+<script src="js/jquery-1.8.3.min.js"></script>
+<script>
+    $('.choose').hide()
+
+  setTimeout(function(){
+    $('.choose').fadeIn(3000)
+
+  },11000);
+  setTimeout(function(){
+    $('.choose').fadeOut(3000)
+  },15000)
+   document.documentElement.addEventListener('click',function(){
+    
+    $('.choose').fadeToggle(2000) 
+   })
+
+
+
+
+</script>
+
+
+</body>
+
+</html>
