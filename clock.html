@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>表</title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		html, body{
+			width: 100%;
+			overflow: hidden;
+		}
+		body{
+			background-color: pink;
+		}
+		/*#test{
+			background-color: gray;
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			margin: auto;
+		}*/
+		#test{
+			background-color: gray;
+			position: absolute;
+			left: 50%;
+			top: 50%;
+			transform: translate3d(-50%,-50%,0); 
+			/*有一种元素居中的方法*/
+
+		}
+	</style>	
+</head>
+<body>
+	<canvas id="test" width="400" height="400">
+		
+	</canvas>
+</body>
+<script type="text/javascript">
+	/*
+	表盘:
+	1.初始化:
+		将圆心调整到画布中心
+		由于canvas画布中画圆与旋转所参照的坐标系与正常的坐标系有出入,所以将整个画布逆时旋转90度
+		旋转后竖着的为x轴 横着的为y轴
+		初始化一些样式数据:
+			lineWidth=8
+			strokeStyle=black
+			lineCap=round
+	2.外层空心圆盘:
+		圆盘颜色:#325FA2
+		圆盘宽度:14
+		圆盘半径为140
+	3.时针刻度:
+		长度为20
+		宽度为8
+		外层空心圆盘与时针刻度之间的距离为20
+	4.分针刻度
+		宽度为4
+		长度为3
+	5.时针
+		宽为14
+		圆心外溢出80 收20
+	6.分针
+		宽度为10
+		圆心外溢出112 收28
+	7.秒针
+		颜色:#D40000
+		宽为6
+		圆心外溢出83 收30
+
+		中心实心圆盘 半径为10
+		秒针头 96码开外半径为10的空心圆,宽度为6
+	
+	 */
+	
+	var canvas = document.querySelector('#test')
+	var ctx = canvas.getContext("2d")
+	clockFun()
+	setInterval(function(){
+		ctx.clearRect(0, 0, canvas.width, canvas.height)
+		clockFun()
+	},1000)
+
+	function clockFun(){
+		// 初始化
+		ctx.save()
+
+		ctx.lineCap = 'round'
+		ctx.lineWidth = 8
+		ctx.strokeStyle = 'black'
+
+		ctx.translate(200, 200)
+		ctx.rotate(-90*Math.PI/180)
+
+		ctx.beginPath()
+
+		// 外层空心圆盘
+		ctx.save()
+		ctx.strokeStyle = '#325FA2'
+		ctx.lineWidth = 14
+		ctx.beginPath()
+		ctx.arc(0, 0, 140, 0, 360*Math.PI/180)// 只是路径
+		ctx.stroke()
+		ctx.restore()
+
+		// 时针刻度
+		// 有12个 每个隔30度 需要使用for循环
+		ctx.save()
+		for(var i = 0;i < 12;i++){
+			ctx.rotate(30*Math.PI/180)// rotate 是累加的 每次加30度
+			ctx.beginPath()
+			ctx.moveTo(100, 0)
+			ctx.lineTo(120, 0)
+			ctx.stroke()
+		}
+		
+		ctx.restore()
+
+		// 分针刻度
+		// 有60个 每个隔6度 需要使用for循环
+		ctx.save()
+		ctx.lineWidth = 4
+		for(var i = 0;i < 60;i++){
+			if(i%5!=0){
+				ctx.beginPath()
+				ctx.moveTo(117, 0)
+				ctx.lineTo(120, 0)
+				ctx.stroke()
+			}
+
+			ctx.rotate(6*Math.PI/180)// rotate 是累加的 每次加6度 为了避免跟时针刻度重复 先划线再旋转
+			// 若不想放在下面 就让i=1
+		}
+		
+		ctx.restore()
+
+		// 时针,分针,秒针,表座
+		var date = new Date()
+		var s = date.getSeconds()
+		var m = date.getMinutes()+s/60
+		var h = date.getHours()+m/60
+		h=h>12?h-12:h;
+
+		// 时针
+		ctx.save()
+		ctx.lineWidth = 14
+		ctx.rotate(h*30*Math.PI/180)
+		ctx.beginPath()
+		ctx.moveTo(80, 0)
+		ctx.lineTo(-20, 0)
+		ctx.stroke()
+		ctx.restore()
+		
+		// 分针
+		ctx.save()
+		ctx.lineWidth = 10
+		ctx.rotate(m*6*Math.PI/180)
+		ctx.beginPath()
+		ctx.moveTo(112, 0)
+		ctx.lineTo(-28, 0)
+		ctx.stroke()
+		ctx.restore()
+
+		// 秒针
+		ctx.save()
+		ctx.strokeStyle = '#D40000'
+		ctx.fillStyle = '#D40000'
+		ctx.lineWidth = 6
+		ctx.rotate(s*6*Math.PI/180)
+		ctx.beginPath()
+		ctx.moveTo(83, 0)
+		ctx.lineTo(-30, 0)
+		ctx.stroke()
+			// 表座
+			ctx.beginPath()
+			ctx.arc(0, 0, 10, 0, 360*Math.PI/180)
+			ctx.fill()
+			// 秒头
+			ctx.beginPath()
+			ctx.arc(96, 0, 10, 0, 360*Math.PI/180)
+			ctx.stroke()
+		ctx.restore()
+
+		ctx.restore()
+	}
+
+	
+    
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</html>
